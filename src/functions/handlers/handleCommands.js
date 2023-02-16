@@ -1,10 +1,15 @@
 const { REST } = require('@discordjs/rest');
 const { chalk } = require('chalk');
 const { Routes } = require('discord-api-types/v9');
-
+require('dotenv').config();
 const fs = require('fs');
 
 module.exports = (client) => { 
+
+    const guildID = process.env.GUILD_ID;
+    const clientID = process.env.CLIENT_ID;
+    const rest = new REST({ version : '9' }).setToken(process.env.TOKEN);
+
     client.handleCommands = async() => {
         const commandFolders = fs.readdirSync("./src/commands");
         for (const folder of commandFolders) {
@@ -23,14 +28,6 @@ module.exports = (client) => {
                 
             }
         }
-        const clientID = "1075578041952112672"
-        const guildID = "1072570469401763930"
-
-        const token = "MTA3NTU3ODA0MTk1MjExMjY3Mg.GnqYIY.3Bw_hjAMRU8PHpWxWEwGAejBA022MXyHeOQg8M"
-        //const rest = new REST({ version: '9' }).setToken(token);
-        //const clientID = process.env.CLIENT_ID;
-        const rest = new REST({ version : '9' }).setToken(process.env.TOKEN);
-
 
         try {
             console.log('Started refreshing application (/) commands.');
