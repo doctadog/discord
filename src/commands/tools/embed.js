@@ -13,18 +13,22 @@ module.exports = {
       .setURL(client.user.displayAvatarURL())
       .setThumbnail(client.user.displayAvatarURL())
       .setTimestamp(Date.now())
-      .setAuthor({ name: 'Some name', iconURL: 'https://i.imgur.com/AfFp7pu.png', url: 'https://discord.js.org' })
+      .setAuthor({ name: 'Solscan', iconURL: 'https://i.imgur.com/AfFp7pu.png', url: 'https://discord.js.org' })
       .setDescription('Some description here')
       .addFields(
-        { name: 'Regular field title', value: 'Some value here' },
+        { name: interaction.user.tag, value: interaction.user.displayAvatarURL() },
         { name: '\u200B', value: '\u200B' },
         { name: 'Inline field title', value: 'Some value here', inline: true },
         { name: 'Inline field title', value: 'Some value here', inline: true }
       )
+      .setFooter({
+        text: `Command Requested by: ${interaction.user.tag}`,
+        iconURL: interaction.user.displayAvatarURL()
+      })
       .addFields({ name: 'Inline field title', value: 'Some value here', inline: true })
       .setImage('https://i.imgur.com/AfFp7pu.png')
       .setTimestamp()
-      .setFooter({ text: 'Some footer text here', iconURL: 'https://i.imgur.com/AfFp7pu.png' })
+    await interaction.reply({ embeds: [exampleEmbed] })
   }
 
 }

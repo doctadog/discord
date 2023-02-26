@@ -14,11 +14,13 @@ for (const folder of functionFolder) {
   for (const file of functionFiles) { require(`./functions/${folder}/${file}`)(client) }
 };
 client.commands = new Collection()
+client.buttons = new Collection()
 client.commandArray = []
 client.color = '0x18e1ee'
 
 client.handleEvents()
 client.handleCommands()
+client.handleComponents()
 client.login(process.env.TOKEN);
 
 (async () => {
